@@ -1,0 +1,54 @@
+{
+  "schema": "public.derivative-provenance.v1",
+  "semanticOwner": "ontology-platform",
+  "generation": "public-contract-slice-r2",
+  "classification": "owner-prepared PUBLIC_DERIVATIVE",
+  "originalPinSemantics": "sourceBytes/sourceSha256 preserve the original extraction; derivativeBytes/derivativeSha256 describe this local public generation, never a changed private canonical source.",
+  "files": [
+    {
+      "path": "src/intent/contract.ts",
+      "sourceBytes": 7978,
+      "sourceSha256": "4965854c5a07d2ad52be7ac37be6d144cc4f4fa790e0f226db377344699a83b4",
+      "transformation": "owner-prepared PUBLIC_DERIVATIVE",
+      "derivativeBytes": 8165,
+      "derivativeSha256": "a71b037217c1c6a971eb32789d11c5a8054f779e4b0eae86533b7552eeb73033",
+      "delta": "Reject missing own indices and decode every required element, including nativeRows."
+    },
+    {
+      "path": "src/intent/resolve.ts",
+      "sourceBytes": 6836,
+      "sourceSha256": "3a20251e4d8945aafdc0a6e6b6acf262200e5fb80bf476206bf6d69a35bb1f47",
+      "transformation": "byte-identical",
+      "derivativeBytes": 6836,
+      "derivativeSha256": "3a20251e4d8945aafdc0a6e6b6acf262200e5fb80bf476206bf6d69a35bb1f47",
+      "delta": null
+    },
+    {
+      "path": "src/intent/json-ingress.ts",
+      "sourceBytes": 1194,
+      "sourceSha256": "05d0d915b7e0c3e1b52d36b64161346230bd833c61430e9e7e2473504867ce7d",
+      "transformation": "byte-identical",
+      "derivativeBytes": 1194,
+      "derivativeSha256": "05d0d915b7e0c3e1b52d36b64161346230bd833c61430e9e7e2473504867ce7d",
+      "delta": null
+    }
+  ],
+  "newPublicFiles": [
+    {
+      "path": "tests/intent-r2.test.ts",
+      "kind": "new-public-development-artifact",
+      "bytes": 2407,
+      "sha256": "d9c28ca0780e06579039673f60a4b3fba018dd3f5687552e4f9e95fefabd7c97"
+    }
+  ],
+  "supportedShapes": "Retained packet reader page/index fields and installed local tool_search/tool_describe success results. No arbitrary annotation envelope is supported. Known source labels, total counts, description/parameters and search hint/available_sources name/tool_count metadata are retained; unknown fields and error/denial envelopes reject.",
+  "limits": [
+    "Local public derivatives only; private canonical/native state unchanged.",
+    "Sparse intent regressions concern exported direct JavaScript object APIs, not sparse JSON text or native acquisition.",
+    "Clarify responses and final verdict content are parsed from JSON strings; holes cannot survive that ingress, and null values already reject.",
+    "No Git, publication, provider invocation, independent review, context activation or native permission established.",
+    "Read-only existing compiler/types reused; cold installation not performed.",
+    "Exact public allowlists only; helpers, node_modules, dist and native homes are excluded.",
+    "Original rights reserved; no new license."
+  ]
+}

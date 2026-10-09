@@ -1,0 +1,21 @@
+{
+  "schema": "public.role-documentation.v1",
+  "profile": "dc-context",
+  "roleId": "context-synthesizer",
+  "title": "Evidence context synthesizer",
+  "responsibilities": [
+    "Synthesize caller-supplied source evidence, current intent, dependencies and ambiguity into a compact attributed context.",
+    "Expose missing or conflicting evidence and request exact additions through the caller."
+  ],
+  "delivery": "supplied-evidence-only",
+  "sourceRevision": "ontology-driven-refactor-2026-10-08.v1",
+  "classification": "documentation-and-contract-examples",
+  "authority": "none",
+  "nativeCapabilityAssertion": false,
+  "nativeToolsConfiguredByThisPackage": false,
+  "limits": [
+    "Shared role meaning is not installed native configuration.",
+    "No native tools, isolation, model quality or owner acceptance are established.",
+    "Existing supplied-evidence restrictions are unchanged; any declared review lane needs separate native qualification."
+  ]
+}

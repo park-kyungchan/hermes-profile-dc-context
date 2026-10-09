@@ -1,0 +1,32 @@
+{
+  "schema": "public.source-provenance.v1",
+  "pinSemantics": "The files entries preserve the original byte-identical extraction pins, not current derivative digests. Current owner-prepared PUBLIC_DERIVATIVE deltas and hashes are in PUBLICPROVENANCE.json. Private canonical sources were not changed.",
+  "semanticOwner": "ontology-platform",
+  "extractionVersion": "public-contract-slice-0.1.0",
+  "classification": "documentation-and-contract-examples",
+  "sourceKind": "existing owned TypeScript contract and pure consumer slice",
+  "files": [
+    {
+      "path": "src/intent/contract.ts",
+      "sourceBytes": 7978,
+      "sourceSha256": "4965854c5a07d2ad52be7ac37be6d144cc4f4fa790e0f226db377344699a83b4",
+      "transformation": "byte-identical"
+    },
+    {
+      "path": "src/intent/resolve.ts",
+      "sourceBytes": 6836,
+      "sourceSha256": "3a20251e4d8945aafdc0a6e6b6acf262200e5fb80bf476206bf6d69a35bb1f47",
+      "transformation": "byte-identical"
+    },
+    {
+      "path": "src/intent/json-ingress.ts",
+      "sourceBytes": 1194,
+      "sourceSha256": "05d0d915b7e0c3e1b52d36b64161346230bd833c61430e9e7e2473504867ce7d",
+      "transformation": "byte-identical"
+    }
+  ],
+  "roleRevision": "ontology-driven-refactor-2026-10-08.v1",
+  "vendoring": "Owner-prepared pinned copies. These copies are not a new canonical registry; refresh through the original semantic owner. Standalone repos need no sibling checkout.",
+  "dependencyPolicy": "Zero third-party runtime dependencies. Development types/compiler are pinned; no dependency code is bundled.",
+  "status": "PUBLIC_CANDIDATE_REVIEW_PENDING"
+}

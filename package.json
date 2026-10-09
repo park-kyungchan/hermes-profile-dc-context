@@ -1,0 +1,21 @@
+{
+  "name": "hermes-profile-dc-context",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "UNLICENSED",
+  "packageManager": "bun@1.4.1",
+  "scripts": {
+    "build": "bun --no-env-file tools/build.ts",
+    "test": "bun --no-env-file test ./tests",
+    "test:positive": "bun --no-env-file test ./tests/positive.test.ts",
+    "test:negative": "bun --no-env-file test ./tests/negative.test.ts",
+    "check": "bun --no-env-file tools/check.ts",
+    "example": "bun --no-env-file examples/consumer.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "1.4.1",
+    "typescript": "7.0.2"
+  },
+  "trustedDependencies": []
+}
