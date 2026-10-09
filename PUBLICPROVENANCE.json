@@ -1,7 +1,8 @@
 {
   "schema": "public.derivative-provenance.v1",
   "semanticOwner": "ontology-platform",
-  "generation": "public-contract-slice-r2",
+  "generation": "public-contract-slice-r6",
+  "r6Policy": "Fresh user-selected PUBLIC rule, not private canonical meaning adoption: confirmed supersession requires an anchor outside the union of every directly and transitively superseded revision of the same decision identity. Preserve conservative content anchors, occurrence consistency and predecessor byte verification; no native or teacher authority.",
   "classification": "owner-prepared PUBLIC_DERIVATIVE",
   "originalPinSemantics": "sourceBytes/sourceSha256 preserve the original extraction; derivativeBytes/derivativeSha256 describe this local public generation, never a changed private canonical source.",
   "files": [
@@ -10,18 +11,19 @@
       "sourceBytes": 7978,
       "sourceSha256": "4965854c5a07d2ad52be7ac37be6d144cc4f4fa790e0f226db377344699a83b4",
       "transformation": "owner-prepared PUBLIC_DERIVATIVE",
-      "derivativeBytes": 8165,
-      "derivativeSha256": "a71b037217c1c6a971eb32789d11c5a8054f779e4b0eae86533b7552eeb73033",
-      "delta": "Reject missing own indices and decode every required element, including nativeRows."
+      "derivativeBytes": 10116,
+      "derivativeSha256": "9f9a1a50b785627b8531f1abbed9f6a4d8adc16f06caee865a6765af01a9e53b",
+      "r6Delta": "Lineage-wide source anchor union before selection; existing graph checks and source-byte validation retained.",
+      "delta": "R5 public corrective derivative: reject contradictory native-row and source-occurrence claims before novelty; verify selected predecessor lineage against supplied retained rows, preserving gaps and conservative replay rejection. Reuse byte-identical reviewed R4 finite own-data snapshot across all included seams. Coverage binds detached frozen private constructor evidence. Private originals and extraction pins unchanged; no native authority, source authenticity, Proxy/global-runtime isolation or teacher acceptance."
     },
     {
       "path": "src/intent/resolve.ts",
       "sourceBytes": 6836,
       "sourceSha256": "3a20251e4d8945aafdc0a6e6b6acf262200e5fb80bf476206bf6d69a35bb1f47",
-      "transformation": "byte-identical",
-      "derivativeBytes": 6836,
-      "derivativeSha256": "3a20251e4d8945aafdc0a6e6b6acf262200e5fb80bf476206bf6d69a35bb1f47",
-      "delta": null
+      "transformation": "owner-prepared PUBLIC_DERIVATIVE",
+      "derivativeBytes": 7297,
+      "derivativeSha256": "7c91aca8d2b400f056eee75737d04eb92f739f34810a6349002b183face04a43",
+      "delta": "R5 public corrective derivative: reject contradictory native-row and source-occurrence claims before novelty; verify selected predecessor lineage against supplied retained rows, preserving gaps and conservative replay rejection. Reuse byte-identical reviewed R4 finite own-data snapshot across all included seams. Coverage binds detached frozen private constructor evidence. Private originals and extraction pins unchanged; no native authority, source authenticity, Proxy/global-runtime isolation or teacher acceptance."
     },
     {
       "path": "src/intent/json-ingress.ts",
@@ -35,10 +37,31 @@
   ],
   "newPublicFiles": [
     {
+      "path": "tests/intent-r6.test.ts",
+      "kind": "new-public-development-artifact",
+      "bytes": 5107,
+      "sha256": "3ea7d48d981f1ec12f079cadfb39066cfbd5e8dccc1ec34fe62679b5f047e018",
+      "delta": "Tests-first synthetic ancestor replay, historical union merge, validated new C, source-byte gaps, aliases, content replay, deep chains and graph guards. Future fixtures are not the user's policy confirmation."
+    },
+    {
       "path": "tests/intent-r2.test.ts",
       "kind": "new-public-development-artifact",
       "bytes": 2407,
       "sha256": "d9c28ca0780e06579039673f60a4b3fba018dd3f5687552e4f9e95fefabd7c97"
+    },
+    {
+      "path": "tests/intent-r5.test.ts",
+      "kind": "new-public-development-artifact",
+      "bytes": 3204,
+      "sha256": "0f4d62477c12dc785ec5ab6a66c32f659b1f5f8c0b9a3768c101522ffb1da37f",
+      "delta": "R5 public corrective derivative: reject contradictory native-row and source-occurrence claims before novelty; verify selected predecessor lineage against supplied retained rows, preserving gaps and conservative replay rejection. Reuse byte-identical reviewed R4 finite own-data snapshot across all included seams. Coverage binds detached frozen private constructor evidence. Private originals and extraction pins unchanged; no native authority, source authenticity, Proxy/global-runtime isolation or teacher acceptance."
+    },
+    {
+      "path": "src/review/data-snapshot.ts",
+      "kind": "new-public-development-artifact",
+      "bytes": 2476,
+      "sha256": "fbeb6f6954487fc5c7ecd2f1b518b1d99fc67fd6c9ce42f234e59e3615321ea7",
+      "delta": "R5 public corrective derivative: reject contradictory native-row and source-occurrence claims before novelty; verify selected predecessor lineage against supplied retained rows, preserving gaps and conservative replay rejection. Reuse byte-identical reviewed R4 finite own-data snapshot across all included seams. Coverage binds detached frozen private constructor evidence. Private originals and extraction pins unchanged; no native authority, source authenticity, Proxy/global-runtime isolation or teacher acceptance."
     }
   ],
   "supportedShapes": "Retained packet reader page/index fields and installed local tool_search/tool_describe success results. No arbitrary annotation envelope is supported. Known source labels, total counts, description/parameters and search hint/available_sources name/tool_count metadata are retained; unknown fields and error/denial envelopes reject.",
@@ -49,6 +72,43 @@
     "No Git, publication, provider invocation, independent review, context activation or native permission established.",
     "Read-only existing compiler/types reused; cold installation not performed.",
     "Exact public allowlists only; helpers, node_modules, dist and native homes are excluded.",
-    "Original rights reserved; no new license."
-  ]
+    "Original rights reserved; no new license.",
+    "R5 changes only public copies; historical R1/R2/R3/R4 receipts and private canonical originals remain unchanged. Fresh independent review and parent recases required before corrective publication."
+  ],
+  "previousGeneration": "public-contract-slice-r5",
+  "directObjectBoundary": "R5 public corrective derivative: reject contradictory native-row and source-occurrence claims before novelty; verify selected predecessor lineage against supplied retained rows, preserving gaps and conservative replay rejection. Reuse byte-identical reviewed R4 finite own-data snapshot across all included seams. Coverage binds detached frozen private constructor evidence. Private originals and extraction pins unchanged; no native authority, source authenticity, Proxy/global-runtime isolation or teacher acceptance.",
+  "sourceOccurrenceIdentity": {
+    "nativeRow": [
+      "sessionId",
+      "messageId"
+    ],
+    "nativeRowConsistency": [
+      "kind",
+      "toolCallId when clarification",
+      "contentSha256"
+    ],
+    "userMessageOccurrence": [
+      "kind",
+      "sessionId",
+      "messageId"
+    ],
+    "clarificationOccurrence": [
+      "kind",
+      "sessionId",
+      "toolCallId",
+      "responseIndex"
+    ],
+    "noveltyPolicy": "Retain conservative direct-message content anchor and clarification call/slot anchor; consistency is checked before novelty, and required predecessor content is verified against supplied rows."
+  },
+  "updatedPublicFiles": [
+    {
+      "path": "README.md",
+      "bytes": 5076,
+      "sha256": "e67d7bbce80d972e2e650934e8f7bf75c469f3c69168d7efec4e7e296d04361f",
+      "delta": "R5 public corrective derivative: reject contradictory native-row and source-occurrence claims before novelty; verify selected predecessor lineage against supplied retained rows, preserving gaps and conservative replay rejection. Reuse byte-identical reviewed R4 finite own-data snapshot across all included seams. Coverage binds detached frozen private constructor evidence. Private originals and extraction pins unchanged; no native authority, source authenticity, Proxy/global-runtime isolation or teacher acceptance."
+    }
+  ],
+  "status": "R6_LOCAL_REVIEW_PENDING",
+  "originalSourcesChanged": false,
+  "priorPublishedAcceptance": "WITHDRAWN_CURRENT_AFFECTED_SOURCE_PUBLIC_HISTORY_PRESERVED"
 }

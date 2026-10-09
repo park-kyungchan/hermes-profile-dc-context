@@ -1,6 +1,6 @@
 # Evidence context synthesizer
 
-Classification: documentation-and-contract-examples. Local public-source candidate; independent exact-source public-safety review and publication are pending.
+Classification: documentation-and-contract-examples. Previously published source history is retained; current affected-source acceptance is withdrawn. R6 is a local corrective candidate pending fresh independent exact-source review before any corrective publication.
 
 Synthesize caller-supplied source evidence, current intent, dependencies and ambiguity into a compact attributed context.
 
@@ -13,6 +13,10 @@ This package contains selected existing pure TypeScript contracts, not a native 
 Use Bun 1.4.1. Runtime build, tests and example require no dependency installation. Run `bun --no-env-file run build`, `bun --no-env-file run test:positive`, `bun --no-env-file run test:negative` and `bun --no-env-file run example`. For type checking, install the pinned development dependencies with `bun install --frozen-lockfile --ignore-scripts`, then run `bun --no-env-file run check`. Existing read-only tools may instead be selected with `TSC_PATH` and `TS_TYPE_ROOTS`; no toolchain is copied.
 
 ## Boundaries
+
+R6 is the current corrective public derivative, implementing a fresh user-selected PUBLIC rule, not private canonical meaning adoption: each confirmed supersession requires a current source anchor outside the union of all directly and transitively superseded revisions of the same decision identity. A-to-B-to-A replay and merging only historical A/B sources reject with SUPERSESSION_NEEDS_NEW_SOURCE. Genuinely new C evidence must still match supplied source bytes; a new descriptor alone is not confirmation. Synthetic future fixtures are separate from the user's policy confirmation and contain no real native records.
+
+R5 protections remain intact: source occurrence identities cannot carry contradictory content claims. Supersession verifies selected predecessor lineage against supplied retained rows; missing or changed evidence cannot create novelty. Consistent aliases and conservative same-content replay rejection remain. The byte-identical reviewed R4 finite own-data snapshot rejects holes, getters, caller iterators, decoration and custom prototypes before decoding; list limits remain fixed. This ordinary-object boundary excludes hostile Proxy traps and global runtime mutation; it establishes neither native JSON authenticity nor OS safety. Private originals and original extraction pins are unchanged. No delivered native API or owner/teacher acceptance is claimed.
 
 R2 is an owner-prepared PUBLIC_DERIVATIVE, not a canonical repair. PUBLICPROVENANCE.json preserves each original source pin and records the changed public digest and bounded delta; PROVENANCE.json's file entries describe the original extraction. Run `bun --no-env-file run test` for the complete suite, including R2 regressions. Intent object APIs reject sparse and inherited list indices; JSON text cannot encode holes. Clarification responses enter through JSON strings, not direct array objects. This package does not include the review-evidence consumer or native acquisition tools.
 

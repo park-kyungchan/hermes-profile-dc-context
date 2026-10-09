@@ -70,11 +70,19 @@ export function resolveContext(candidateInput: unknown, requestInput: unknown, r
     decisionId, revisions: ds.map(d => d.revision), sourceIds: [...new Set(ds.flatMap(d => d.sourceIds))],
   }));
   const conflictingIds = new Set(conflicts.map(c => c.decisionId));
-  const requiredIds = new Set(heads.flatMap(d => d.sourceIds));
+  // All in-scope predecessor evidence participates in novelty; never discard its check.
+  const requiredIds = new Set(relevant.flatMap(d => d.sourceIds));
   const needed = candidate.sources.filter(s => requiredIds.has(s.id));
   const gaps = needed.map(s => verifySource(s, rows)).filter((x): x is Gap => x !== null);
   const failedSources = new Set(gaps.map(g => g.subject));
-  const selected = heads.filter(d => !conflictingIds.has(d.id) && d.sourceIds.every(s => !failedSources.has(s)));
+  const lineageChecks = new Map<Decision, boolean>();
+  const lineageValid = (d: Decision): boolean => {
+    if (lineageChecks.has(d)) return lineageChecks.get(d)!;
+    const valid = d.sourceIds.every(s => !failedSources.has(s)) &&
+      d.supersedes.every(revision => lineageValid(relevant.find(p => p.id === d.id && p.revision === revision)!));
+    lineageChecks.set(d, valid); return valid;
+  };
+  const selected = heads.filter(d => !conflictingIds.has(d.id) && lineageValid(d));
   for (const id of conflictingIds) gaps.push({ code: "CONFLICTING_REVISIONS", subject: id });
   const representedTopics = new Set(heads.map(d => d.topic));
   const missingTopics = request.topics.filter(t => !representedTopics.has(t));

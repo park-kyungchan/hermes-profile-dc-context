@@ -1,10 +1,13 @@
 // Contract-specific decoders are the runtime source of truth; exported types are inferred.
+import { dataSnapshot } from '../review/data-snapshot';
 export class ContractError extends Error {
   constructor(readonly code: string) { super(code); }
 }
 const fail = (code: string): never => { throw new ContractError(code); };
+const capture = (value: unknown): any => { try { return dataSnapshot(value); } catch { return fail('INVALID_DATA'); } };
 const ensure = (ok: unknown, code: string): void => { if (!ok) fail(code); };
 function object(value: unknown, fields: readonly string[]) {
+  value = capture(value);
   ensure(value !== null && typeof value === "object" && !Array.isArray(value), "INVALID_OBJECT");
   const obj = value as Record<string, unknown>;
   ensure(Object.getPrototypeOf(obj) === Object.prototype || Object.getPrototypeOf(obj) === null, "INVALID_OBJECT");
@@ -30,6 +33,7 @@ function choice<const T extends readonly string[]>(value: unknown, values: T): T
   return value as T[number];
 }
 function list<T>(value: unknown, parse: (item: unknown) => T, max = 128, min = 0): T[] {
+  value = capture(value);
   ensure(Array.isArray(value) && value.length >= min && value.length <= max, "INVALID_ARRAY");
   const items = value as unknown[], decoded: T[] = [];
   for (let index = 0; index < items.length; index++) {
@@ -45,6 +49,7 @@ function unique<T>(values: T[]): T[] {
 function literal(value: unknown, expected: string) { ensure(value === expected, "INVALID_SCHEMA"); return expected; }
 
 export function parseScope(value: unknown) {
+  value = capture(value);
   const tag = value !== null && typeof value === "object" ? (value as Record<string, unknown>).kind : undefined;
   if (tag === "shared") {
     const o = object(value, ["kind", "profile"]);
@@ -59,6 +64,7 @@ export function parseScope(value: unknown) {
   return { kind: "workstream" as const, profile: id(o.profile), projectId: id(o.projectId), workstreamId: id(o.workstreamId) };
 }
 export function parseSource(value: unknown) {
+  value = capture(value);
   const tag = value !== null && typeof value === "object" ? (value as Record<string, unknown>).kind : undefined;
   const fields = tag === "clarification"
     ? ["id", "kind", "sessionId", "messageId", "toolCallId", "responseIndex", "contentSha256"]
@@ -92,6 +98,20 @@ export function parseCandidate(value: unknown) {
   const sourceIds = new Set(sources.map(s => s.id));
   ensure(decisions.every(d => d.sourceIds.every(s => sourceIds.has(s))), "UNKNOWN_SOURCE_REFERENCE");
   const sourceById = new Map(sources.map(s => [s.id, s]));
+  // Descriptor IDs may alias evidence; occurrence identity cannot alias contradictory bytes.
+  // A native row has one kind/call/content even when it contains multiple response slots.
+  const rows = new Map<string, string>(), occurrences = new Map<string, string>();
+  for (const s of sources) {
+    const row = JSON.stringify([s.sessionId, s.messageId]);
+    const claim = JSON.stringify([s.kind, s.kind === "clarification" ? s.toolCallId : null, s.contentSha256]);
+    ensure(!rows.has(row) || rows.get(row) === claim, "CONTRADICTORY_SOURCE_OCCURRENCE");
+    rows.set(row, claim);
+    const occurrence = s.kind === "clarification"
+      ? JSON.stringify([s.kind, s.sessionId, s.toolCallId, s.responseIndex])
+      : JSON.stringify([s.kind, s.sessionId, s.messageId]);
+    ensure(!occurrences.has(occurrence) || occurrences.get(occurrence) === s.contentSha256, "CONTRADICTORY_SOURCE_OCCURRENCE");
+    occurrences.set(occurrence, s.contentSha256);
+  }
   const anchor = (sourceId: string) => {
     const s = sourceById.get(sourceId)!;
     // Native compaction can copy a row without creating a new user answer.
@@ -110,10 +130,25 @@ export function parseCandidate(value: unknown) {
       ensure(previous && revision < d.revision, "INVALID_SUPERSESSION_TARGET");
       if (d.kind === "confirmed-direction") {
         ensure(previous!.kind === "confirmed-direction", "INVALID_SUPERSESSION_TARGET");
-        const oldAnchors = new Set(previous!.sourceIds.map(anchor));
-        ensure(d.sourceIds.some(s => !oldAnchors.has(anchor(s))), "SUPERSESSION_NEEDS_NEW_SOURCE");
       }
     }
+  }
+  // The validated graph is strictly descending within one decision identity.
+  // Collect its entire predecessor closure before resolver selection drops history.
+  for (const d of decisions) {
+    if (d.kind !== "confirmed-direction" || d.supersedes.length === 0) continue;
+    const siblings = decisions.filter(x => x.id === d.id);
+    const oldAnchors = new Set<string>(), visited = new Set<number>();
+    const pending = [...d.supersedes];
+    while (pending.length) {
+      const revision = pending.pop()!;
+      if (visited.has(revision)) continue;
+      visited.add(revision);
+      const previous = siblings.find(x => x.revision === revision)!;
+      for (const sourceId of previous.sourceIds) oldAnchors.add(anchor(sourceId));
+      pending.push(...previous.supersedes);
+    }
+    ensure(d.sourceIds.some(s => !oldAnchors.has(anchor(s))), "SUPERSESSION_NEEDS_NEW_SOURCE");
   }
   return { schema: "backend.intent-context.candidate.v1" as const, stage: "candidate" as const,
     meaningStatus: "curated-user-source-interpretations" as const, sources, decisions };
